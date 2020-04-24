@@ -37,8 +37,12 @@ public class ServiceCounter {
 		int currentCustomer = 0;
 		
 		//import data
+		if(args.length > 0) {
+			System.out.println("Too few arguments. Try \"customersfile.txt queriesfile.txt\"");
+		}
 		if (!(args[0].equals("customersfile.txt") && args[1].equals("queriesfile.txt"))) {
-			System.out.println("Please input appropriate data files as arguments.\nPress 'Enter' to exit.");
+			System.out.println("Please input appropriate data files as arguments.\n"
+					+ "Try \"customersfile.txt queriesfile.txt\"\nPress 'Enter' to exit.");
 			Scanner scan = new Scanner(System.in);
 			scan.nextLine();
 			scan.close();
@@ -216,16 +220,25 @@ public class ServiceCounter {
 				break;
 				case "WAITING-TIME-OF": {
 					int tempId = Integer.parseInt(lineText[1]);
-					if (tempId <= customerData.size() && tempId > 0) {
-						System.out.println("WAITING-TIME-OF " + lineText[1] + ": " +
-								intToTime(customerData.get(tempId-1).getWaitTime()));
-					}
+					boolean exists = false;
+						for (Customer c: customerData) {
+							if (c.getIdNumber() == tempId) {
+								System.out.println("WAITING-TIME-OF " + lineText[1] + ": " +
+										intToTime(c.getWaitTime()));
+								exists = true;
+								break;
+							}
+						}
+						if (!exists) {
+							System.out.println("WAITING-TIME-OF " + lineText[1] + ": " +
+									"CUSTOMER DOES NOT EXIST");
+						}
+						
 				}
 			}
 		}
 		reader.close();
-
-		
 	}
-
+		
 }
+
