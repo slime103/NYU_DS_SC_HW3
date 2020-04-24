@@ -42,11 +42,7 @@ public class ServiceCounter {
 		}
 		if (!(args[0].equals("customersfile.txt") && args[1].equals("queriesfile.txt"))) {
 			System.out.println("Please input appropriate data files as arguments.\n"
-					+ "Try \"customersfile.txt queriesfile.txt\"\nPress 'Enter' to exit.");
-			Scanner scan = new Scanner(System.in);
-			scan.nextLine();
-			scan.close();
-			System.exit(0);
+					+ "Try \"customersfile.txt queriesfile.txt\"");
 		}
 		
 		//read customer file
