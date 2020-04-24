@@ -37,7 +37,7 @@ public class ServiceCounter {
 		int currentCustomer = 0;
 		
 		//import data
-		if(args.length > 0) {
+		if(!(args.length == 2)) {
 			System.out.println("Too few arguments. Try \"customersfile.txt queriesfile.txt\"");
 		}
 		if (!(args[0].equals("customersfile.txt") && args[1].equals("queriesfile.txt"))) {
