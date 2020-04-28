@@ -92,13 +92,22 @@ public class ServiceCounter {
 		}
 		
 		scan.close();
-		//System.out.println(customerData);
+		System.out.println(customerData);
 		
 		//Add all the customers before opening time to the Queue
+		//Do any customers arrive after closing?
+		int lastCustomer = customerData.size() - 1;
 		for (Customer c: customerData) {
 			if (c.getTimeOfArrival() <= OPENING_TIME) {
 				queue.add(c);
 				currentCustomer = customerData.indexOf(c);
+			} else if (c.getTimeOfArrival() >= CLOSING_TIME) {
+				if (customerData.lastIndexOf(c) > 0) {
+					lastCustomer = customerData.lastIndexOf(c) - 1;
+				} else {
+					System.out.println("All customers arrived after closing.");
+				}
+				break;
 			}
 		}
 		
@@ -114,7 +123,7 @@ public class ServiceCounter {
 		//SERVICE TIME
 		//else if the Queue is empty start a break
 		
-		while (currentCustomer < customerData.size() - 1 || !queue.isEmtpy()) {
+		while (currentCustomer < lastCustomer || !queue.isEmtpy()) {
 			//System.out.println(intToTime(currentTime));
 			//System.out.println(queue + "\n\n");
 			if (queue.isEmtpy()) {
@@ -148,7 +157,7 @@ public class ServiceCounter {
 				int nextCustomer = currentCustomer + 1;
 				
 				//did anyone come at the time of service?
-				while (currentCustomer < customerData.size() - 1) {
+				while (currentCustomer < lastCustomer) {
 					if (customerData.get(nextCustomer).getTimeOfArrival() <= (currentTime)
 							&& customerData.get(nextCustomer).getTimeOfArrival() < CLOSING_TIME) {
 						//System.out.println("A. Adding " + customerData.get(nextCustomer).getIdNumber() + " to the queue.");
@@ -167,7 +176,7 @@ public class ServiceCounter {
 				currentTime += serviceTime;	
 				
 				//did anyone come during service?
-				while (currentCustomer < customerData.size() - 1) {
+				while (currentCustomer < lastCustomer) {
 					if (customerData.get(nextCustomer).getTimeOfArrival() < (currentTime + serviceTime)
 							&& customerData.get(nextCustomer).getTimeOfArrival() < CLOSING_TIME) {
 						//System.out.println("Adding " + customerData.get(nextCustomer).getIdNumber() + " to the queue.");
