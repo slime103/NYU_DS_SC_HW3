@@ -7,12 +7,16 @@ The customer and query files may be altered to your liking, but their formatting
 ID-NUMBER: (integer value)
 ARRIVAL-TIME: (hh:mm:ss)
 
+Note that the customers must arrive in order in the text file.
+
 The queries file may contain the following commands:
 NUMBER-OF-CUSTOMERS-SERVED
 LONGEST-BREAK-LENGTH
 TOTAL-IDLE-TIME
 MAXIMUM-NUMBER-OF-PEOPLE-IN-QUEUE-AT-ANY-TIME
 WAITING-TIME-OF (customer ID number)
+
+The opening and closing times of the counter are 9:00:00 and 5:00:00.
 
 The program could probably be more efficient. However, this was my first time dealing with time, and it can be quite a headache.
 
