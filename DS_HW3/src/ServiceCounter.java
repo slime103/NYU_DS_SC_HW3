@@ -103,7 +103,7 @@ public class ServiceCounter {
 				currentCustomer = customerData.indexOf(c);
 			} else if (c.getTimeOfArrival() >= CLOSING_TIME) {
 				if (customerData.lastIndexOf(c) > 0) {
-					lastCustomer = customerData.lastIndexOf(c) - 1;
+					lastCustomer = customerData.indexOf(c) - 1;
 				} else {
 					System.out.println("All customers arrived after closing.");
 				}
