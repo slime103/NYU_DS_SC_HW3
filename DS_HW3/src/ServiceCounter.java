@@ -40,8 +40,8 @@ public class ServiceCounter {
 		if(!(args.length == 2)) {
 			System.out.println("Too few arguments. Try \"customersfile.txt queriesfile.txt\"");
 		}
-		if (!(args[0].equals("customersfile.txt") && args[1].equals("queriesfile.txt"))) {
-			System.out.println("Please input appropriate data files as arguments.\n"
+		if (!(args[0].contains(".txt") && args[1].contains(".txt"))) {
+			System.out.println("Please input appropriate data files as arguments.(two .txt files)\n"
 					+ "Try \"customersfile.txt queriesfile.txt\"");
 		}
 		
@@ -92,7 +92,7 @@ public class ServiceCounter {
 		}
 		
 		scan.close();
-		System.out.println(customerData);
+		//System.out.println(customerData);
 		
 		//Add all the customers before opening time to the Queue
 		//Do any customers arrive after closing?
